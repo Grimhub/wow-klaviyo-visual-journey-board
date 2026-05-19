@@ -10,7 +10,7 @@ This board includes:
 - Journey status, entry point, trigger, audience, creative, CTA, destination, revenue job and next fix.
 - Flow-level metrics where exported, including unsubscribed rate and bounced-email rate.
 - Email-level metrics where exported, including unsubscribed rate and bounced-email rate.
-- Email creative thumbnails that open a live clickable email preview, starting in a full-email zoomed-out view with clear scroll and zoom instructions.
+- Email creative thumbnails that open a live clickable email preview at 50%, with large plus/minus zoom controls and a clear gold scroll rail.
 - Draft Codessence creative with no send metrics yet.
 
 Files:
