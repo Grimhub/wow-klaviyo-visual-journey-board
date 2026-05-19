@@ -23,7 +23,14 @@
 .zoom-stage::-webkit-scrollbar-track{background:#fff;border-left:2px solid var(--gold);border-radius:999px}
 .zoom-stage::-webkit-scrollbar-thumb{background:var(--gold);border:4px solid #fff;border-radius:999px;box-shadow:inset 0 0 0 2px rgba(20,40,61,.2)}
 .zoom-50 .email-frame-shell{--zoom-scale:.5}
+.journey-brief{display:grid;grid-template-columns:1.08fr 1fr 1.24fr;gap:0;margin:14px 0 14px;background:var(--pale);border:1px solid #d9e6eb;border-radius:8px;overflow:hidden}
+.journey-brief>div{min-width:0;padding:12px 14px;border-left:1px solid #d9e6eb}
+.journey-brief>div:first-child{border-left:0}
+.journey-brief span{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.06em;font-weight:800;margin-bottom:5px}
+.journey-brief p{margin:4px 0 0;font-size:13px;line-height:1.38}
+.journey-brief strong{color:var(--navy)}
 @media(max-width:760px){.zoom-stage{padding-right:44px}.zoom-stage-wrap::after{width:28px}.zoom-step{width:42px;height:42px;font-size:26px!important}.zoom-current{min-width:64px}}
+@media(max-width:900px){.journey-brief{grid-template-columns:1fr}.journey-brief>div{border-left:0;border-top:1px solid #d9e6eb;padding:10px 12px}.journey-brief>div:first-child{border-top:0}}
 </style>
 </head>
 <body>
@@ -116,6 +123,73 @@ const zoomOutButton = document.querySelector('.zoom-out');
 const zoomLevels = ['50', '75', '100', '150', '200'];
 const baseEmailWidth = 600;
 let zoomIndex = 0;
+const journeyBriefs = {
+  'I Am Centenarian challenge signup': {
+    route: 'Challenge subscribers join the 30-day list.',
+    exists: '11-email journey to the PDF, Instagram/Substack and survey route.',
+    move: 'Strongest onboarding benchmark. Next: add a clearer handoff into Deep Dive, WOW shop, Codessence or a survey-based recommendation.'
+  },
+  'Creator Era quiz result': {
+    route: 'Quiz completers receive a stage result: Survival, Intention, Awareness or Creation.',
+    exists: '4 result emails sending people towards the Creator Era Guide offer.',
+    move: 'High-intent quiz route, but email quality risk is visible. Next: confirm whether this is current before reuse.'
+  },
+  'Creator Era sales nurture': {
+    route: 'Quiz completers continue into the sales nurture sequence.',
+    exists: '8 emails pointing to the Creator Era Guide and linked WOW / Codessence routes.',
+    move: 'High volume, weak click movement. Next: rebuild around one current offer and one clear action, or retire if legacy.'
+  },
+  'Email Welcome Series with Discount': {
+    route: 'New subscribers join the main email list through signup forms.',
+    exists: '3-email welcome route using shop, gift and learn-more CTAs.',
+    move: 'First-buyer path. Next: confirm the live offer, clean the source logic and split by product interest.'
+  },
+  'WOW website contact form': {
+    route: 'Website enquiries, partnership leads and general contact-form submissions.',
+    exists: '1 confirmation email protecting the contact route.',
+    move: 'Protect genuine enquiries. Next: add spam protection, review submissions and remove bad addresses.'
+  },
+  'Customer Thank You - new vs returning': {
+    route: 'Buyers enter only if the narrow Creator Era Guide purchase route applies.',
+    exists: '2 thank-you emails for new versus returning buyers, with no sends in the export.',
+    move: 'Buyer nurture exists but is too narrow. Next: broaden the trigger and branch by actual product bought.'
+  },
+  'Codessence Paid Member Welcome Sequence': {
+    route: 'Paid-member audience pending launch confirmation.',
+    exists: '5 drafted onboarding emails to Blueprint, User Guide, Codessence and community routes.',
+    move: 'Paid-member onboarding is ready to inspect. Next: confirm the payment, member-tag, subscription, list or segment trigger.'
+  },
+  'Codessence Welcome Journey - Assessment, No Paid Member': {
+    route: 'Assessment leads pending launch confirmation.',
+    exists: '5 drafted follow-up emails to Blueprint, User Guide, Codessence, community and WOW routes.',
+    move: 'Assessment follow-up is drafted. Next: confirm the lead route, approve links and fix visible copy/routing flags.'
+  }
+};
+function compactJourneyGrids() {
+  document.querySelectorAll('.journey-card').forEach(card => {
+    const title = card.querySelector('h3')?.textContent?.trim();
+    const brief = journeyBriefs[title];
+    const grid = card.querySelector('.journey-grid');
+    if (!brief || !grid) return;
+    const wrapper = document.createElement('div');
+    wrapper.className = 'journey-brief';
+    [
+      ['Route', brief.route],
+      ['What exists', brief.exists],
+      ['Commercial move', brief.move]
+    ].forEach(([label, text]) => {
+      const item = document.createElement('div');
+      const heading = document.createElement('span');
+      const copy = document.createElement('p');
+      heading.textContent = label;
+      copy.textContent = text;
+      item.append(heading, copy);
+      wrapper.appendChild(item);
+    });
+    grid.replaceWith(wrapper);
+  });
+}
+compactJourneyGrids();
 function updateOverviewScale() {
   const stageRect = zoomStage.getBoundingClientRect();
   const emailWidth = parseFloat(getComputedStyle(frameShell).getPropertyValue('--email-width')) || baseEmailWidth;
