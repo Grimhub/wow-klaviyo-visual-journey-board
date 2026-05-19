@@ -8,7 +8,7 @@ This version shows existing live and draft journeys only. Future initiatives and
 
 This board includes:
 - Journey status and compact route / creative / commercial-move summaries.
-- Flow-level all-time sent metrics from Klaviyo's Total Recipients report, including unsubscribed rate and bounced-email rate.
+- Flow-level all-time unique people counts from Klaviyo segment previews, including unsubscribed rate and bounced-email rate from the all-time flow email report.
 - Email-level all-time sent metrics from Klaviyo's Total Recipients report, including unsubscribed rate and bounced-email rate.
 - Email creative thumbnails that open a live clickable email preview at 50%, with large plus/minus zoom controls and a clear gold scroll rail.
 - Draft Codessence creative with no send metrics yet.
