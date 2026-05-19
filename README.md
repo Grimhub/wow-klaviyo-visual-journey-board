@@ -10,7 +10,7 @@ This board includes:
 - Journey status, entry point, trigger, audience, creative, CTA, destination, revenue job and next fix.
 - Flow-level metrics where exported, including unsubscribed rate and bounced-email rate.
 - Email-level metrics where exported, including unsubscribed rate and bounced-email rate.
-- Email creative thumbnails that open a live clickable email preview with staged zoom controls.
+- Email creative thumbnails that open a live clickable email preview, starting in a full-email zoomed-out view with clear scroll and zoom instructions.
 - Draft Codessence creative with no send metrics yet.
 
 Files:
@@ -24,3 +24,4 @@ External-viewing note:
 - The HTML email links open in a new browser tab.
 - The email images inside the live HTML may need internet access because Klaviyo-hosted images are loaded from external URLs.
 - The screenshot thumbnails remain in the folder as a stable visual fallback.
+- The WOW website contact-form preview uses neutral sample wording rather than the fake Klaviyo preview name/message from the raw export.
